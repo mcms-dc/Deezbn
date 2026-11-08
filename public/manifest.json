@@ -1,0 +1,17 @@
+{
+  "short_name": "DerivSignals",
+  "name": "Deriv Live Digit Signals Analyzer",
+  "description": "Real-time professional digital options signal analysis for Deriv",
+  "icons": [
+    {
+      "src": "/icons/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1117",
+  "theme_color": "#ff444f",
+  "orientation": "portrait"
+}
