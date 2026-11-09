@@ -30,19 +30,20 @@ interface SignalState {
   setConnectionStatus: (status: 'CONNECTED' | 'ANALYZING' | 'DISCONNECTED') => void;
   performance: SignalPerformance[];
   recordResult: (prediction: Signal, actualDigit: number) => void;
+  // Auth State
+  isAuthenticated: boolean;
+  setAuthenticated: (status: boolean) => void;
+  userEmail: string | null;
+  setUserEmail: (email: string | null) => void;
 }
 
 export const useSignalStore = create<SignalState>((set) => ({
   selectedMarket: 'R_100',
   setMarket: (market) => set({ selectedMarket: market, digits: [], performance: [] }),
   digits: [],
-  addDigit: (digit) => set((state) => {
-    // When adding a digit, we can check the last generated signal's result
-    // This is handled in the hook to keep the store pure
-    return {
-      digits: [...state.digits, digit].slice(-500)
-    };
-  }),
+  addDigit: (digit) => set((state) => ({
+    digits: [...state.digits, digit].slice(-500)
+  })),
   setDigits: (digits) => set({ digits }),
   signals: [],
   setSignals: (signals) => set({ signals }),
@@ -68,4 +69,8 @@ export const useSignalStore = create<SignalState>((set) => ({
       performance: [...state.performance, newRecord].slice(-100)
     };
   }),
+  isAuthenticated: false,
+  setAuthenticated: (status) => set({ isAuthenticated: status }),
+  userEmail: null,
+  setUserEmail: (email) => set({ userEmail: email }),
 }));

@@ -4,7 +4,7 @@ import { SignalEngine } from '../lib/SignalEngine';
 
 const APP_ID = '1089'; // Default public App ID, user can change in env
 
-export const useDerivAPI = () => {
+export const useDerivAPI = (isAuthenticated: boolean) => {
   const {
     selectedMarket,
     addDigit,
@@ -16,6 +16,8 @@ export const useDerivAPI = () => {
   const ws = useRef<WebSocket | null>(null);
 
   useEffect(() => {
+    if (!isAuthenticated) return;
+
     const connect = () => {
       setConnectionStatus('ANALYZING');
       const socket = new WebSocket(`wss://api.derivws.com/trading/v1/options/ws/public?app_id=${APP_ID}`);
@@ -85,7 +87,8 @@ export const useDerivAPI = () => {
     return () => {
       ws.current?.close();
     };
-  }, [selectedMarket]);
+  }, [selectedMarket, isAuthenticated]);
+
 
   // Continuous Analysis Loop
   useEffect(() => {

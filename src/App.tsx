@@ -2,10 +2,19 @@ import React from 'react';
 import { MarketSelector } from './components/MarketSelector';
 import { SignalDashboard } from './components/SignalDashboard';
 import { PerformanceTracker } from './components/PerformanceTracker';
+import { AuthPage } from './components/AuthPage';
 import { useDerivAPI } from './hooks/useDerivAPI';
+import { useSignalStore } from './store/useSignalStore';
 
 function App() {
-  useDerivAPI();
+  const { isAuthenticated } = useSignalStore();
+
+  // This hook MUST be called unconditionally at the top level
+  useDerivAPI(isAuthenticated);
+
+  if (!isAuthenticated) {
+    return <AuthPage />;
+  }
 
   return (
     <div className="min-h-screen p-4 md:p-8 flex flex-col items-center justify-center bg-deriv-bg text-white">
