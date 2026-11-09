@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSignalStore } from '../store/useSignalStore';
 import { authService } from '../lib/auth';
 
-const DEVELOPER_PHONE = '1234567890'; // Replace with your actual WhatsApp number
+const DEVELOPER_PHONE = '255738266269'; // Replace with your actual WhatsApp number
 
 export const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
