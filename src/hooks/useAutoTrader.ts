@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useSignalStore, Signal } from '../store/useSignalStore';
+import { useSignalStore, type Signal } from '../store/useSignalStore';
 
 const APP_ID = '1089';
 
