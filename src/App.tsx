@@ -5,13 +5,16 @@ import { PerformanceTracker } from './components/PerformanceTracker';
 import { AuthPage } from './components/AuthPage';
 import { useDerivAPI } from './hooks/useDerivAPI';
 import { useSignalStore } from './store/useSignalStore';
+import { AutoTradePanel } from './components/AutoTradePanel';
+import { useAutoTrader } from './hooks/useAutoTrader';
 
 function App() {
   const { isAuthenticated } = useSignalStore();
 
   // This hook MUST be called unconditionally at the top level
   useDerivAPI(isAuthenticated);
-
+  useAutoTrader();
+  
   if (!isAuthenticated) {
     return <AuthPage />;
   }
@@ -27,6 +30,7 @@ function App() {
 
       <div className="w-full max-w-4xl flex flex-col items-center gap-8">
         <MarketSelector />
+        <AutoTradePanel />
         <SignalDashboard />
         <PerformanceTracker />
       </div>
