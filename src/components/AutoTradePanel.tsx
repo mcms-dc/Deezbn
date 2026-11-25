@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSignalStore, Signal } from '../store/useSignalStore';
+import { useSignalStore, type Signal } from '../store/useSignalStore';
 
 const CONTRACT_TYPES: Array<Signal['type']> = ['OVER', 'UNDER', 'EVEN', 'ODD'];
 const STRENGTH_OPTIONS: Array<'Min' | 'Strong' | 'Very Strong'> = ['Min', 'Strong', 'Very Strong'];
